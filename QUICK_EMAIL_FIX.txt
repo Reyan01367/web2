@@ -1,0 +1,75 @@
+========================================
+  📧 EMAIL SETUP - FOLLOW THESE STEPS
+========================================
+
+The booking form works, but emails won't send until you configure authentication.
+
+⚠️  CURRENT ISSUE: Email authentication error
+
+========================================
+QUICK SETUP (5 minutes):
+========================================
+
+1. 🔐 GET APP PASSWORD
+   - Go to: https://account.microsoft.com/security  
+   - Sign in with: r.and.r@hotmail.com
+   - Click "Advanced security options"
+   - Find "App passwords" section
+   - Click "Create a new app password"
+   - Copy the password (looks like: abcd-efgh-ijkl-mnop)
+
+2. ✏️  EDIT .ENV FILE
+   - Open file: .env (in web2 folder)
+   - Find line: EMAIL_PASS=your_password_here_change_this
+   - Replace with: EMAIL_PASS=your-actual-app-password
+   - Save the file
+
+3. 🔄 RESTART SERVER
+   - In terminal: Press Ctrl+C to stop
+   - Run: npm start
+   - Wait for "Server running" message
+
+========================================
+TEST THE BOOKING:
+========================================
+
+1. Go to: http://localhost:3000
+2. Click "Book Your Session"
+3. Fill form with YOUR email address
+4. Click "Confirm Booking"
+5. Check your email inbox!
+
+========================================
+WHAT EMAILS WILL BE SENT:
+========================================
+
+✉️  TO CUSTOMER (person who books):
+   - Booking confirmation
+   - Service details
+   - Date and time
+   - Your contact info
+   - WhatsApp link
+
+✉️  TO YOU (r.and.r@hotmail.com):
+   - New booking notification
+   - Customer details
+   - Service requested
+   - Contact information
+   - Direct WhatsApp link to customer
+
+========================================
+CURRENT STATUS:
+========================================
+
+✅ Website: Working perfectly
+✅ Booking form: Working perfectly  
+✅ Animations: Working perfectly
+✅ WhatsApp links: Working perfectly
+❌ Email notifications: Needs password setup
+
+========================================
+
+Once you set the app password, the booking system
+will be 100% professional and automated! 🎉
+
+========================================

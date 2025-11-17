@@ -1,0 +1,88 @@
+========================================
+  RYQbyreham Booking Website
+  QUICK START GUIDE
+========================================
+
+✅ YOUR WEBSITE IS READY!
+
+📂 Location: /Users/rahulkumargupta/Desktop/web2/
+
+🌐 Local URL: http://localhost:3000
+   (Server is already running!)
+
+========================================
+⚠️  BEFORE BOOKING WORKS - DO THIS FIRST:
+========================================
+
+1. Open the file: .env
+2. Change this line:
+   EMAIL_PASS=your_password_here_change_this
+   
+3. Get your Hotmail App Password:
+   - Go to: https://account.microsoft.com/security
+   - Click "Advanced security options"
+   - Create an "App password"
+   - Copy the password (format: xxxx-xxxx-xxxx-xxxx)
+   
+4. Paste it in .env:
+   EMAIL_PASS=your-actual-password-here
+
+5. Restart server:
+   - Stop: Press Ctrl+C in terminal
+   - Start: npm start
+
+========================================
+📋 WHAT YOU GOT:
+========================================
+
+✨ Beautiful website with Tiffany blue theme
+📅 Calendar booking system
+⏰ Time slot selection
+📧 Automatic email confirmations
+💌 Business owner notifications
+📱 WhatsApp integration
+🎨 Fully responsive (mobile + desktop)
+🚀 Professional animations
+
+========================================
+🎯 HOW TO USE:
+========================================
+
+1. Visit: http://localhost:3000
+2. Test the booking form
+3. Check email: r.and.r@hotmail.com
+4. Customize colors/text in index.html
+5. Deploy online (see SETUP_INSTRUCTIONS.md)
+
+========================================
+🌐 DEPLOY ONLINE (FREE):
+========================================
+
+EASIEST: Netlify
+1. Go to netlify.com
+2. Sign up free
+3. Drag & drop your web2 folder
+4. Add environment variables
+5. Done! Get your URL
+
+========================================
+📞 CONTACT INFO ON SITE:
+========================================
+
+Email: r.and.r@hotmail.com
+WhatsApp: +966505412256
+Logo: ✅ Added (your image)
+
+========================================
+💰 COSTS:
+========================================
+
+Hosting: FREE (Netlify/Vercel/Heroku)
+Domain: Optional (~$10/year)
+Running: $0/month
+Email: FREE (using your Hotmail)
+
+========================================
+Need help? Read SETUP_INSTRUCTIONS.md
+========================================
+

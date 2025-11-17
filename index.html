@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYQbyreham - Fashion Styling Consultation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --tiffany-blue: #0abab5;
+            --tiffany-light: #81e6e3;
+            --tiffany-dark: #089992;
+            --neutral-dark: #2c2c2c;
+            --neutral-medium: #6b6b6b;
+            --neutral-light: #f5f5f5;
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --cream: #f8f8f8;
+            --error: #ff6b6b;
+            --success: #51cf66;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--neutral-light) 100%);
+            color: var(--neutral-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Background Decorations */
+        .background-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(135deg, #faf9f7 0%, #f5f5f5 50%, #faf9f7 100%);
+        }
+
+        /* Animated Gradient Background */
+        .background-decoration::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(10, 186, 181, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(129, 230, 227, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(10, 186, 181, 0.1) 0%, transparent 35%);
+            animation: gradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(-5%, -5%) rotate(120deg);
+            }
+            66% {
+                transform: translate(5%, 5%) rotate(240deg);
+            }
+        }
+
+        /* Floating Orbs */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-light));
+            opacity: 0;
+            filter: blur(60px);
+        }
+
+        .circle-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -150px;
+            opacity: 0.15;
+            animation: float1 12s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -100px;
+            opacity: 0.12;
+            animation: float2 15s ease-in-out infinite;
+        }
+
+        .circle-3 {
+            width: 350px;
+            height: 350px;
+            top: 40%;
+            left: -100px;
+            opacity: 0.1;
+            animation: float3 18s ease-in-out infinite;
+        }
+
+        .circle-4 {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            right: -80px;
+            opacity: 0.08;
+            animation: float4 14s ease-in-out infinite;
+        }
+
+        /* Geometric Patterns */
+        .geometric-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(10, 186, 181, 0.03) 35px, rgba(10, 186, 181, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(129, 230, 227, 0.03) 35px, rgba(129, 230, 227, 0.03) 70px);
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+            100% {
+                background-position: 70px 70px, -70px 70px;
+            }
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--tiffany-blue);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 10s; }
+        .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 2s; animation-duration: 12s; }
+        .particle:nth-child(3) { left: 30%; top: 40%; animation-delay: 4s; animation-duration: 9s; }
+        .particle:nth-child(4) { left: 40%; top: 60%; animation-delay: 1s; animation-duration: 11s; }
+        .particle:nth-child(5) { left: 50%; top: 30%; animation-delay: 3s; animation-duration: 13s; }
+        .particle:nth-child(6) { left: 60%; top: 70%; animation-delay: 5s; animation-duration: 10s; }
+        .particle:nth-child(7) { left: 70%; top: 50%; animation-delay: 2.5s; animation-duration: 14s; }
+        .particle:nth-child(8) { left: 80%; top: 25%; animation-delay: 4.5s; animation-duration: 11s; }
+        .particle:nth-child(9) { left: 90%; top: 65%; animation-delay: 1.5s; animation-duration: 12s; }
+        .particle:nth-child(10) { left: 15%; top: 45%; animation-delay: 3.5s; animation-duration: 10s; }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0px) scale(0);
+            }
+            10% {
+                opacity: 0.6;
+                transform: translateY(-20px) scale(1);
+            }
+            90% {
+                opacity: 0.6;
+                transform: translateY(-80px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        /* Floating Animations */
+        @keyframes float1 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(20px, -80px) scale(0.9);
+            }
+            75% {
+                transform: translate(-30px, -40px) scale(1.05);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(-60px, 40px) scale(1.15) rotate(120deg);
+            }
+            66% {
+                transform: translate(-30px, 70px) scale(0.95) rotate(240deg);
+            }
+        }
+
+        @keyframes float3 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(80px, 60px) scale(1.2);
+            }
+        }
+
+        @keyframes float4 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            50% {
+                transform: translate(-50px, -70px) scale(1.1) rotate(180deg);
+            }
+        }
+
+        /* Mesh Gradient Effect */
+        .mesh-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+            background: 
+                radial-gradient(at 0% 0%, rgba(10, 186, 181, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(129, 230, 227, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(10, 186, 181, 0.18) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(129, 230, 227, 0.12) 0px, transparent 50%);
+            animation: meshPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes meshPulse {
+            0%, 100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Sparkles */
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--tiffany-light);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 6px var(--tiffany-blue),
+                0 0 12px var(--tiffany-light);
+            animation: sparkleAnimation 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .sparkle:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { left: 15%; top: 85%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { left: 25%; top: 45%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { left: 35%; top: 65%; animation-delay: 0.5s; }
+        .sparkle:nth-child(5) { left: 45%; top: 25%; animation-delay: 1.5s; }
+        .sparkle:nth-child(6) { left: 55%; top: 75%; animation-delay: 2.5s; }
+        .sparkle:nth-child(7) { left: 65%; top: 35%; animation-delay: 1.2s; }
+        .sparkle:nth-child(8) { left: 75%; top: 55%; animation-delay: 0.8s; }
+        .sparkle:nth-child(9) { left: 85%; top: 20%; animation-delay: 2.2s; }
+        .sparkle:nth-child(10) { left: 95%; top: 70%; animation-delay: 1.8s; }
+
+        @keyframes sparkleAnimation {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(10, 186, 181, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: logoGlow 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 35px rgba(10, 186, 181, 0.3));
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo:hover {
+            transform: scale(1.08) rotate(-3deg);
+            filter: drop-shadow(0 20px 45px rgba(10, 186, 181, 0.5));
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--neutral-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--neutral-medium);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--neutral-medium);
+            margin-bottom: 3rem;
+            line-height: 1.9;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 1.3rem 3.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--tiffany-blue) 0%, var(--tiffany-light) 100%);
+            color: var(--white);
+            box-shadow: 0 12px 35px rgba(10, 186, 181, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(10, 186, 181, 0.45);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--tiffany-blue);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--tiffany-blue);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(10, 186, 181, 0.25);
+            background: var(--tiffany-blue);
+            color: var(--white);
+        }
+
+        /* Wave Animation */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: rgba(255, 255, 255, 0.5);
+            animation: waveMove 10s ease-in-out infinite;
+        }
+
+        @keyframes waveMove {
+            0%, 100% {
+                d: path("M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,56C672,48,768,32,864,29.3C960,27,1056,37,1152,42.7C1248,48,1344,48,1392,48L1440,48L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z");
+            }
+            50% {
+                d: path("M0,48L48,42.7C96,37,192,27,288,24C384,21,480,27,576,34.7C672,43,768,53,864,56C960,59,1056,53,1152,48C1248,43,1344,37,1392,34.7L1440,32L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z");
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 8px 32px rgba(10, 186, 181, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--neutral-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--tiffany-blue), var(--tiffany-light));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--neutral-medium);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(15px) saturate(150%);
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            box-shadow: 
+                0 15px 45px rgba(10, 186, 181, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 186, 181, 0.08) 0%, rgba(129, 230, 227, 0.12) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(10, 186, 181, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 25px 70px rgba(10, 186, 181, 0.25),
+                0 10px 25px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            border-color: rgba(10, 186, 181, 0.4);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+            transform: translate(25%, 25%) scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--neutral-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--neutral-medium);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .booking-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.92) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 3.5rem;
+            border-radius: 30px;
+            box-shadow: 
+                0 25px 70px rgba(10, 186, 181, 0.2),
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                inset 0 0 20px rgba(10, 186, 181, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--tiffany-blue), var(--tiffany-light), var(--tiffany-blue));
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 0%;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--neutral-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group label i {
+            margin-right: 0.5rem;
+            color: var(--tiffany-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.3rem;
+            border: 2px solid var(--neutral-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--tiffany-blue);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(10, 186, 181, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230abab5' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 3rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--tiffany-blue) 0%, var(--tiffany-light) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 12px 35px rgba(10, 186, 181, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(10, 186, 181, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        .alert.show {
+            display: flex;
+        }
+
+        .alert-success {
+            background: rgba(81, 207, 102, 0.1);
+            border: 2px solid var(--success);
+            color: #2b8a3e;
+        }
+
+        .alert-error {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid var(--error);
+            color: #c92a2a;
+        }
+
+        .alert i {
+            font-size: 1.5rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--neutral-dark);
+            color: var(--neutral-light);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--neutral-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--tiffany-light);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--tiffany-blue);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--neutral-medium);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Flatpickr Custom Styles */
+        .flatpickr-calendar {
+            border-radius: 12px !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+            border: none !important;
+        }
+
+        .flatpickr-day.selected {
+            background: var(--tiffany-blue) !important;
+            border-color: var(--tiffany-blue) !important;
+        }
+
+        .flatpickr-day:hover {
+            background: var(--tiffany-light) !important;
+            border-color: var(--tiffany-light) !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+                letter-spacing: 2px;
+            }
+
+            .logo {
+                max-width: 220px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .booking-container {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .circle-1, .circle-2, .circle-3 {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .logo {
+                max-width: 180px;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .booking-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-decoration">
+        <div class="mesh-gradient"></div>
+        <div class="geometric-pattern"></div>
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="sparkles">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="logo-container">
+            <img src="logo.png" alt="RYQbyreham Logo" class="logo">
+        </div>
+
+        <h1>RYQbyreham</h1>
+        
+        <p class="tagline">Personal Fashion Styling Consultation</p>
+        
+        <p class="description">
+            Elevate your style with expert fashion consultation. We'll work with your existing wardrobe 
+            to create stunning looks, or guide you to find the perfect pieces for any occasion.
+        </p>
+
+            <div class="cta-buttons">
+            <a href="#booking" class="btn btn-primary">
+                Book Your Session
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=966505412256&brid=a6xQeFDZy0m_OANggLbNcQ" 
+               class="btn btn-secondary" 
+               target="_blank"
+               rel="noopener noreferrer">
+                Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Tailored styling solutions for every need</p>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Closet Consultation</h3>
+                    <p>Expert styling with your existing wardrobe. Discover new combinations, maximize your current pieces, and learn how to create versatile looks for any occasion.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Event Styling</h3>
+                    <p>Personalized recommendations and expert guidance for shopping the perfect look for your special occasions. Get curated references and styling advice.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Personal Style Analysis</h3>
+                    <p>Comprehensive style consultation to understand your unique preferences, body type, and lifestyle needs. Create a signature look that's authentically you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Session</h2>
+            <p class="section-subtitle">Let's create your perfect style together</p>
+
+            <div class="booking-container">
+                <div id="alertContainer"></div>
+
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">
+                            <i class="fas fa-user"></i>
+                            Full Name *
+                        </label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Email Address *
+                            </label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone"></i>
+                                Phone Number *
+                            </label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+966 XXX XXX XXX">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">
+                            <i class="fas fa-star"></i>
+                            Select Service *
+                        </label>
+                        <select id="service" name="service" class="form-control" required>
+                            <option value="">Choose a service...</option>
+                            <option value="Closet Consultation">Closet Consultation</option>
+                            <option value="Event Styling">Event Styling</option>
+                            <option value="Personal Style Analysis">Personal Style Analysis</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">
+                                <i class="fas fa-calendar"></i>
+                                Preferred Date *
+                            </label>
+                            <input type="text" id="date" name="date" class="form-control" required placeholder="Select a date">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">
+                                <i class="fas fa-clock"></i>
+                                Preferred Time *
+                            </label>
+                            <select id="time" name="time" class="form-control" required>
+                                <option value="">Choose a time...</option>
+                                <option value="09:00 AM">09:00 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="01:00 PM">01:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="05:00 PM">05:00 PM</option>
+                                <option value="06:00 PM">06:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">
+                            <i class="fas fa-comment"></i>
+                            Additional Notes (Optional)
+                        </label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Tell us about your style goals, special requirements, or any questions..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span id="btnText">Send Booking Email</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="logo.png" alt="RYQbyreham" class="footer-logo">
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#booking">Book Now</a>
+                <a href="mailto:r.and.r@hotmail.com">Contact</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://api.whatsapp.com/send?phone=966505412256&brid=a6xQeFDZy0m_OANggLbNcQ" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:r.and.r@hotmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <p class="copyright">
+                &copy; 2025 RYQbyreham. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr for date picker
+        flatpickr("#date", {
+            minDate: "today",
+            maxDate: new Date().fp_incr(90), // 90 days from today
+            dateFormat: "Y-m-d",
+            disable: [
+                function(date) {
+                    // Disable Fridays (5) - adjust based on your business hours
+                    return (date.getDay() === 5);
+                }
+            ],
+            locale: {
+                firstDayOfWeek: 6 // Start week on Saturday (adjust as needed)
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const bookingForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const alertContainer = document.getElementById('alertContainer');
+
+        function showAlert(message, type) {
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type} show">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <div>${message}</div>
+                </div>
+            `;
+
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                const alert = alertContainer.querySelector('.alert');
+                if (alert) {
+                    alert.classList.remove('show');
+                }
+            }, 8000);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(bookingForm);
+            const data = Object.fromEntries(formData);
+
+            // Validate required fields
+            if (!data.name || !data.email || !data.phone || !data.date || !data.time || !data.service) {
+                showAlert('Please fill in all required fields before submitting.', 'error');
+                return;
+            }
+
+            // Create email subject
+            const subject = `New Booking Request - ${data.name}`;
+
+            // Create email body with all details
+            const emailBody = `Hello RYQbyreham,
+
+I would like to book a fashion styling session with the following details:
+
+📋 BOOKING DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Client Name: ${data.name}
+📧 Email: ${data.email}
+📞 Phone: ${data.phone}
+
+🎯 Service Requested: ${data.service}
+📅 Preferred Date: ${formatDate(data.date)}
+⏰ Preferred Time: ${data.time}
+
+${data.message ? `💬 Additional Notes:\n${data.message}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Please confirm my booking and let me know if you need any additional information.
+
+Thank you!
+
+Best regards,
+${data.name}
+${data.phone}
+
+---
+This booking was submitted through RYQbyreham.com
+Booking timestamp: ${new Date().toLocaleString()}`;
+
+            // Create mailto link
+            const mailtoLink = `mailto:r.and.r@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            // Disable submit button temporarily
+            submitBtn.disabled = true;
+            btnText.innerHTML = 'Opening Email...';
+
+            // Show success message
+            showAlert('Perfect! Your email client is opening with all details pre-filled. Just hit SEND to complete your booking!', 'success');
+
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Reset form after short delay
+            setTimeout(() => {
+                bookingForm.reset();
+                submitBtn.disabled = false;
+                btnText.textContent = 'Send Booking Email';
+                
+                // Scroll to alert
+                alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 2000);
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .booking-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
